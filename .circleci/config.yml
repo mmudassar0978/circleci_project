@@ -39,11 +39,11 @@ jobs:
       - run:
           name: Pull and Run Container on VM
           command: |
-            docker pull mudassar9530/resume-app:latest
+            docker pull $DOCKER_USERNAME/resume-app:latest
 
             docker rm -f resume || true
 
-            docker run -d -p 8086:80 --name resume mudassar9530/resume-app:latest
+            docker run -d -p 8086:80 --name resume $DOCKER_USERNAME/resume-app:latest
 
 
 workflows:
