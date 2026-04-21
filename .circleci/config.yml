@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Pull and Run Container on VM
           command: |
-            docker pull $DOCKER_USERNAME/resume-app:latest
+            docker pull mudassar9530/resume-app:latest
 
             docker stop resume || true
             docker rm resume || true
