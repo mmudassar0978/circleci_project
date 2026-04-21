@@ -25,26 +25,22 @@ jobs:
           command: |
             docker push $DOCKER_USERNAME/resume-app:latest
 
+
   deploy:
-    docker:
-      - image: cimg/base:stable
+    machine: true
+    resource_class: fast_emerging/github   
 
     steps:
       - run:
-          name: Install SSH
+          name: Pull and Run Container on VM
           command: |
-            sudo apt update
-            sudo apt install -y openssh-client
+            docker pull $DOCKER_USERNAME/resume-app:latest
 
-      - run:
-          name: Deploy to Ubuntu Server
-          command: |
-            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
-              docker pull $DOCKER_USERNAME/resume-app:latest &&
-              docker stop resume || true &&
-              docker rm resume || true &&
-              docker run -d -p 80:80 --name resume $DOCKER_USERNAME/resume-app:latest
-            "
+            docker stop resume || true
+            docker rm resume || true
+
+            docker run -d -p 80:80 --name resume $DOCKER_USERNAME/resume-app:latest
+
 
 workflows:
   version: 2
