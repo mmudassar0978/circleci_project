@@ -28,13 +28,13 @@ jobs:
 
   deploy:
     machine: true
-    resource_class: fast_emerging/github   
+    resource_class: fast_emerging/ubuntu   
 
     steps:
       - run:
           name: Pull and Run Container on VM
           command: |
-            docker pull mudassar9530/resume-app:latest
+            docker pull $DOCKER_USERNAME/resume-app:latest
 
             docker stop resume || true
             docker rm resume || true
