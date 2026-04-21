@@ -43,7 +43,7 @@ jobs:
 
             docker rm -f resume || true
 
-            docker run -d -p 80:80 --name resume mudassar9530/resume-app:latest
+            docker run -d -p 8086:80 --name resume mudassar9530/resume-app:latest
 
 
 workflows:
