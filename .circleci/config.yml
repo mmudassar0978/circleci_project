@@ -36,8 +36,7 @@ jobs:
           command: |
             docker pull $DOCKER_USERNAME/resume-app:latest
 
-            docker stop resume || true
-            docker rm resume || true
+            docker rm -f resume || true
 
             docker run -d -p 80:80 --name resume $DOCKER_USERNAME/resume-app:latest
 
